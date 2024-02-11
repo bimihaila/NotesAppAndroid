@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NotesAppAndroid</string>
+
+    <!-- Home Screen -->
+    <string name="homeScreenHeader">All Notes</string>
+
+    <!-- Note Card -->
+    <string name="noteCardEmptyNoteTitle">Note</string>
 </resources>

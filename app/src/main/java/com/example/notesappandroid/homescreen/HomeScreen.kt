@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.example.notesappandroid.Note
+import com.example.notesappandroid.note.Note
 import com.example.notesappandroid.R
 import com.example.notesappandroid.card.NoteCard
 import com.example.notesappandroid.card.NoteParameters
@@ -82,8 +82,8 @@ class HomeScreenParametersProvider: PreviewParameterProvider<HomeScreenParameter
                             "in the washing machine."
                 ),
                 Note(
-                    title = "Course Notes",
-                    content = "I missed the course.."
+                    title = "Class notes",
+                    content = "Missed my class.."
                 )
             )
         )

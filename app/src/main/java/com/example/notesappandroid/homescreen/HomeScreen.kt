@@ -1,13 +1,9 @@
 package com.example.notesappandroid.homescreen
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -17,7 +13,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.example.notesappandroid.Note
 import com.example.notesappandroid.R
+import com.example.notesappandroid.card.NoteCard
+import com.example.notesappandroid.card.NoteParameters
 import com.example.notesappandroid.ui.theme.NotesAppAndroidTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,40 +34,70 @@ fun HomeScreen(
                         )
                     }
                 )
-            },
-            content = {paddingValues ->
-                Column(
-                    modifier = Modifier
-                        .padding(paddingValues)
-                ) {
-                    Text(
-                        text = title
+            }
+        ) { paddingValues ->
+            LazyColumn(
+                modifier = Modifier
+                    .padding(paddingValues)
+            ) {
+                items(list.size) { note ->
+                    NoteCard(
+                        noteParameters = NoteParameters(
+                            title = list[note].title,
+                            content = list[note].content
+                        ),
+                        onNoteClick = onNoteClick
                     )
                 }
             }
-        )
+        }
     }
 }
 
 data class HomeScreenParameters(
-    val title: String = "Hello"
+    val list: List<Note> = listOf(),
+    val onNoteClick: () -> Unit = {}
 )
+
+fun generateHomeScreenParameters(
+    list: List<Note>,
+    onNoteClick: () -> Unit = {}
+): HomeScreenParameters {
+    return HomeScreenParameters(
+        list = list,
+        onNoteClick = onNoteClick
+    )
+}
 
 class HomeScreenParametersProvider: PreviewParameterProvider<HomeScreenParameters> {
     override val values: Sequence<HomeScreenParameters> = sequenceOf(
-        HomeScreenParameters(
-            title = "Hello"
+        generateHomeScreenParameters(
+            list = listOf(
+                Note(
+                    title = "Shopping list:",
+                    content = "\nSoap\nDetergent\nFabric conditioner\nMilk\nSnacks"
+                ),
+                Note(
+                    content = "Need to call the doctor and to put an alarm to put the clothes" +
+                            "in the washing machine."
+                ),
+                Note(
+                    title = "Course Notes",
+                    content = "I missed the course.."
+                )
+            )
         )
     )
 }
 
 @Preview(
     showBackground = true,
-
+    showSystemUi = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Preview(
     showBackground = true,
+    showSystemUi = true,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
 @Composable

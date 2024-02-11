@@ -6,4 +6,14 @@
 
     <!-- Note Card -->
     <string name="noteCardEmptyNoteTitle">Note</string>
+
+    <!-- Note Screen -->
+    <string name="noteScreenTitle">View note</string>
+    <string name="noteScreenNavigationIconContentDescription">Navigate back to the Home Screen</string>
+    <string name="noteScreenDropDownMenuIconContentDescription">Open drop down menu</string>
+
+    <!-- Dropdown menu options-->
+    <string name="option1">Amend</string>
+    <string name="option2">Delete</string>
+
 </resources>

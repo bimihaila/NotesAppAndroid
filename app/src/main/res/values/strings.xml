@@ -6,6 +6,7 @@
 
     <!-- Note Card -->
     <string name="noteCardEmptyNoteTitle">Note</string>
+    <string name="noteCardTestTag">NoteCard test tag</string>
 
     <!-- Note Screen -->
     <string name="noteScreenTitle">View note</string>

@@ -3,7 +3,7 @@
   on: [push]
   jobs:
     build:
-      name: Build
+      name: PushBuild
       runs-on: ubuntu-latest
       steps:
         - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."

@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,7 +38,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -47,31 +48,45 @@ android {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    val navVersion = "2.7.7"
-    val composeVersion = "1.7.0"
-    val lifecycleVersion = "2.7.0"
-    val junitVersion = "4.13.2"
-    val mockitoVersion = "5.7.0"
-    val mockitoKotlinVersion = "5.7.0"
-    val androidXTestVersion = "1.1.5"
-    val androidXCoreVersion = "1.5.0"
+    listOf(
+        libs.android.core,
+        libs.android.lifecycle,
+        libs.compose.activity,
+        platform(libs.compose.bom),
+        libs.compose.ui,
+        libs.compose.ui.graphics,
+        libs.compose.preview,
+        libs.compose.material3,
+        libs.compose.nav,
+        libs.room.runtime
+    ).forEach {
+        implementation(it)
+    }
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.activity:activity-compose:$composeVersion")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.navigation:navigation-compose:$navVersion")
-    testImplementation("junit:junit:$junitVersion")
-    androidTestImplementation("androidx.test.ext:junit:$androidXTestVersion")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation("androidx.test:core:$androidXCoreVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+
+    listOf(
+        libs.junit.jupiter,
+        libs.junit,
+    ).forEach {
+        testImplementation(it)
+    }
+
+    listOf(
+        libs.androidx.test.core,
+        libs.androidx.espresso,
+        platform(libs.compose.bom),
+        libs.android.junit4,
+        libs.androidx.junit
+    ).forEach {
+        androidTestImplementation(it)
+    }
+
+    listOf(
+        libs.compose.ui.tooling,
+        libs.androidx.manifest
+    ).forEach {
+        debugImplementation(it)
+    }
 }

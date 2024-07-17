@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -58,13 +59,15 @@ dependencies {
         libs.compose.preview,
         libs.compose.material3,
         libs.compose.nav,
-        libs.room.runtime
+        libs.room.runtime,
+        libs.hilt.android
     ).forEach {
         implementation(it)
     }
 
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
+    ksp(libs.hilt.compiler)
 
     listOf(
         libs.junit.jupiter,

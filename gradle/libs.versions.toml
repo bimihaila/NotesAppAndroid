@@ -2,6 +2,7 @@
 application = "8.2.2"
 kotlin-android = "1.9.0"
 ksp = "1.8.21-1.0.11"
+hilt = "2.44"
 
 core = "1.12.0"
 navVersion = "2.7.7"
@@ -37,10 +38,13 @@ androidx-espresso = { group="androidx.test.espresso", name="espresso-core", vers
 android-junit4 = { group="androidx.compose.ui", name="ui-test-junit4" }
 androidx-test-core = { group="androidx.test", name="core", version.ref="androidXCoreVersion" }
 androidx-manifest = { group="androidx.compose.ui", name="ui-test-manifest" }
-room-runtime = { group = "androidx.room", name="room-runtime", version.ref = "room" }
-room-compiler = { group = "androidx.room", name="room-compiler", version.ref = "room"}
+room-runtime = { group = "androidx.room", name="room-runtime", version.ref="room" }
+room-compiler = { group = "androidx.room", name="room-compiler", version.ref="room"}
+hilt-android = { group = "com.google.dagger", name="hilt-android", version.ref="hilt" }
+hilt-compiler = { group = "com.google.dagger", name="hilt-android-compiler", version.ref="hilt"}
 
 [plugins]
 android-application = { id="com.android.application", version.ref="application"}
 kotlin-android = { id="org.jetbrains.kotlin.android", version.ref="kotlin-android" }
 ksp = { id="com.google.devtools.ksp", version.ref="ksp"}
+hilt = { id="com.google.dagger.hilt.android", version.ref="hilt"}

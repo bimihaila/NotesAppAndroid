@@ -1,0 +1,46 @@
+[versions]
+application = "8.2.2"
+kotlin-android = "1.9.0"
+ksp = "1.8.21-1.0.11"
+
+core = "1.12.0"
+navVersion = "2.7.7"
+composeVersion = "1.7.0"
+lifecycleVersion = "2.7.0"
+compose-bom = "2023.08.00"
+room = "2.6.1"
+
+junitVersion = "4.13.2"
+mockitoVersion = "5.7.0"
+mockitoKotlinVersion = "5.7.0"
+androidXTestVersion = "1.1.5"
+androidXCoreVersion = "1.5.0"
+junitJupiter = "5.8.1"
+espresso = "3.5.1"
+
+
+[libraries]
+android-core = { group="androidx.core", name="core-ktx", version.ref="core" }
+android-lifecycle = { group="androidx.lifecycle", name="lifecycle-runtime-ktx", version.ref="lifecycleVersion" }
+compose-activity = { group="androidx.activity", name="activity-compose", version.ref="composeVersion" }
+compose-bom = { group="androidx.compose", name="compose-bom", version.ref="compose-bom" }
+compose-ui = { group="androidx.compose.ui", name="ui" }
+compose-ui-tooling = { group="androidx.compose.ui", name="ui-tooling" }
+compose-ui-graphics = { group="androidx.compose.ui", name="ui-graphics" }
+compose-preview = { group="androidx.compose.ui", name="ui-tooling-preview" }
+compose-material3 = { group="androidx.compose.material3", name="material3" }
+compose-nav = { group="androidx.navigation", name="navigation-compose", version.ref="navVersion" }
+junit-jupiter = { group="org.junit.jupiter", name="junit-jupiter", version.ref="junitJupiter" }
+junit = { group="junit", name="junit", version.ref="junitVersion" }
+androidx-junit = { group="androidx.test.ext", name="junit", version.ref="androidXTestVersion" }
+androidx-espresso = { group="androidx.test.espresso", name="espresso-core", version.ref="espresso"}
+android-junit4 = { group="androidx.compose.ui", name="ui-test-junit4" }
+androidx-test-core = { group="androidx.test", name="core", version.ref="androidXCoreVersion" }
+androidx-manifest = { group="androidx.compose.ui", name="ui-test-manifest" }
+room-runtime = { group = "androidx.room", name="room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name="room-compiler", version.ref = "room"}
+
+[plugins]
+android-application = { id="com.android.application", version.ref="application"}
+kotlin-android = { id="org.jetbrains.kotlin.android", version.ref="kotlin-android" }
+ksp = { id="com.google.devtools.ksp", version.ref="ksp"}

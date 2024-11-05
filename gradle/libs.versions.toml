@@ -1,6 +1,6 @@
 [versions]
 application = "8.2.2"
-kotlin-android = "1.9.0"
+kotlin-android = "1.9.23"
 ksp = "1.9.21-1.0.15"
 
 core = "1.12.0"

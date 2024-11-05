@@ -1,4 +1,4 @@
-name: on-push
+name: on-pull-request
 run-name: On push and merge main
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
       - reopened
       - synchronize
       - ready_for_review
-  workflow-dispatch:
+  workflow_dispatch:
 
 jobs:
   build:

@@ -64,7 +64,6 @@ dependencies {
     }
 
     annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)
 
     listOf(
         libs.junit.jupiter,

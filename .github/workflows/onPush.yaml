@@ -1,6 +1,8 @@
   name: on-push
   run-name: On push and merge main
   on: [push]
+  workflow-dispatch:
+
   jobs:
     build:
       name: pushBuild

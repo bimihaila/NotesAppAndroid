@@ -72,6 +72,7 @@ dependencies {
     }
 
     annotationProcessor(libs.room.compiler)
+
     listOf(
         libs.room.compiler,
         libs.hilt.compiler,

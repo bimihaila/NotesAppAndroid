@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.notesappandroid.card
 
 import android.content.res.Configuration
@@ -13,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,7 +46,7 @@ fun NoteCard(
                    noteModifier
                ),
            colors = CardDefaults.cardColors(
-               containerColor = colors.random()
+               containerColor = color
            )
        ) {
            Text(
@@ -83,6 +82,7 @@ data class NoteParameters(
     val title: String? = null,
     val content: String,
     val expanded: Boolean = true,
+    val color: Color = Color.Unspecified,
     val noteModifier: Modifier = Modifier
 )
 

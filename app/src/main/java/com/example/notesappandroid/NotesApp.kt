@@ -1,10 +1,12 @@
 package com.example.notesappandroid
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,6 +15,7 @@ import com.example.notesappandroid.card.NoteScreen
 import com.example.notesappandroid.card.generateNoteScreenParameters
 import com.example.notesappandroid.homescreen.HomeScreen
 import com.example.notesappandroid.homescreen.HomeScreenParameters
+import com.example.notesappandroid.homescreen.HomeScreenViewModel
 import com.example.notesappandroid.navigation.Navigation
 import com.example.notesappandroid.note.Note
 
@@ -42,15 +45,12 @@ fun NotesApp(
             route = Navigation.HomeScreen.route
         ) {
             HomeScreen(
-                parameters = HomeScreenParameters(
-                    list = list,
-                    onNoteClick = {
-                        navController.navigate(
-                            Navigation.NoteScreen.route
-                        )
-                    }
+                list = list
+            ) {
+                navController.navigate(
+                    Navigation.NoteScreen.route
                 )
-            )
+            }
         }
         composable(
             route = Navigation.NoteScreen.route

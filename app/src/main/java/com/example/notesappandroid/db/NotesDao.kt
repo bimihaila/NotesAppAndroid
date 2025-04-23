@@ -4,17 +4,21 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.notesappandroid.note.Note
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotesDao {
     @Insert
-    fun saveNote(note: NotesEntity)
+    fun saveNote(note: NoteEntity)
 
     @Delete
-    fun deleteNote(id: String)
+    fun deleteNote(note: NoteEntity)
 
-//    @Query("SELECT * FROM")
-//    fun retrieveAllNotes(): Flow<List<Note>>
+    @Update
+    fun updateNote(note: NoteEntity)
+
+    @Query("SELECT * FROM noteentity")
+    fun retrieveAllNotes(): Flow<List<Note>>
 }

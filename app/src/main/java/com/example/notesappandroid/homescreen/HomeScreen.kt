@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.notesappandroid.note.Note
 import com.example.notesappandroid.R
 import com.example.notesappandroid.card.NoteCard
@@ -22,33 +23,33 @@ import com.example.notesappandroid.ui.theme.NotesAppAndroidTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    parameters: HomeScreenParameters
+    viewModel: HomeScreenViewModel = hiltViewModel(),
+    list: List<Note> = listOf(),
+    onNoteClick: () -> Unit
 ) {
-    parameters.apply {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(id = R.string.homeScreenHeader)
-                        )
-                    }
-                )
-            }
-        ) { paddingValues ->
-            LazyColumn(
-                modifier = Modifier
-                    .padding(paddingValues)
-            ) {
-                items(list.size) { note ->
-                    NoteCard(
-                        noteParameters = NoteParameters(
-                            title = list[note].title,
-                            content = list[note].content
-                        ),
-                        onNoteClick = onNoteClick
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.homeScreenHeader)
                     )
                 }
+            )
+        }
+    ) { paddingValues ->
+        LazyColumn(
+            modifier = Modifier
+                .padding(paddingValues)
+        ) {
+            items(list.size) { note ->
+                NoteCard(
+                    noteParameters = NoteParameters(
+                        title = list[note].title,
+                        content = list[note].content
+                    ),
+                    onNoteClick = onNoteClick
+                )
             }
         }
     }
@@ -107,7 +108,8 @@ fun HomeScreenPreview(
 ) {
     NotesAppAndroidTheme {
         HomeScreen(
-            parameters = parameters
+            list = parameters.list,
+            onNoteClick = parameters.onNoteClick
         )
     }
 }

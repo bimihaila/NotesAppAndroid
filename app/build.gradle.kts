@@ -1,8 +1,10 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    id("com.android.application")
+    kotlin("android")
+    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -38,18 +40,18 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    flavorDimensions += listOf("build", "integration", "production")
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
+    implementation(libs.androidx.appcompat)
     listOf(
         libs.android.core,
         libs.android.lifecycle,
@@ -61,14 +63,20 @@ dependencies {
         libs.compose.material3,
         libs.compose.nav,
         libs.room.runtime,
-        libs.hilt.android
+        libs.hilt.android,
+        libs.google.devtools,
+        libs.room.ktx,
+        libs.androidx.hilt
     ).forEach {
         implementation(it)
     }
 
     annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)
-    ksp(libs.hilt.compiler)
+    listOf(
+        libs.room.compiler,
+        libs.hilt.compiler,
+        libs.androidx.hilt.compiler
+    ).forEach(::kapt)
 
     listOf(
         libs.junit.jupiter,
@@ -93,4 +101,10 @@ dependencies {
     ).forEach {
         debugImplementation(it)
     }
+}
+
+hilt {
+    enableAggregatingTask = true
+    enableTransformForLocalTests = true
+    enableExperimentalClasspathAggregation = true
 }

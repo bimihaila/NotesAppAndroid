@@ -1,6 +1,7 @@
   name: on-push
   run-name: On push and merge main
   on: [push]
+
   jobs:
     build:
       name: pushBuild
